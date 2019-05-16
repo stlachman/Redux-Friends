@@ -2,16 +2,49 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { fetchFriends } from '../actions';
+import { fetchFriends, addFriend } from '../actions';
 
 class FriendsList extends React.Component {
 	constructor() {
 		super();
+
+		this.state = {
+			newFriend: {
+				name: '',
+				age: '',
+				email: ''
+			}
+		};
 	}
 
 	componentDidMount() {
 		this.props.fetchFriends();
 	}
+
+	handleChange = (event) => {
+		let value = event.target.value;
+
+		this.setState({
+			newFriend: {
+				...this.state.newFriend,
+				[event.target.name]: event.target.value
+			}
+		});
+
+		this.setState({ [event.target.name]: value });
+	};
+
+	handleSubmit = (event) => {
+		event.preventDefault();
+		this.props.addFriend(this.state.newFriend);
+		this.setState({
+			newFriend: {
+				name: '',
+				age: '',
+				email: ''
+			}
+		});
+	};
 
 	render() {
 		console.log(this.props);
@@ -22,6 +55,32 @@ class FriendsList extends React.Component {
 			<div>
 				<h1>Friends List</h1>
 				{this.props.friends.map((friend) => <div key={friend.id}>{friend.name}</div>)}
+
+				<h2>Add a Friend</h2>
+				<form onSubmit={this.handleSubmit}>
+					<input
+						onChange={this.handleChange}
+						placeholder="Name"
+						value={this.state.newFriend.name}
+						type="text"
+						name="name"
+					/>
+					<input
+						onChange={this.handleChange}
+						placeholder="Age"
+						value={this.state.newFriend.age}
+						type="text"
+						name="age"
+					/>
+					<input
+						onChange={this.handleChange}
+						placeholder="Email"
+						value={this.state.newFriend.email}
+						type="text"
+						name="email"
+					/>
+					<button>Add Friend</button>
+				</form>
 			</div>
 		);
 	}
@@ -34,4 +93,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { fetchFriends })(FriendsList));
+export default withRouter(connect(mapStateToProps, { fetchFriends, addFriend })(FriendsList));

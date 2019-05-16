@@ -4,7 +4,9 @@ import {
 	LOGIN_FAILURE,
 	FETCH_DATA_INIT,
 	FETCH_SUCCESSFUL,
-	FETCH_FAILURE
+	FETCH_FAILURE,
+	FORM_INIT_FRIEND,
+	FORM_ADD_FRIEND
 } from '../actions';
 
 const inititalState = {
@@ -44,6 +46,22 @@ const reducer = (state = inititalState, action) => {
 				fetchingData: false,
 				friends: action.payload,
 				error: ''
+			};
+		case FETCH_FAILURE:
+			return {
+				...state,
+				fetchingData: false,
+				error: action.payload
+			};
+		case FORM_INIT_FRIEND:
+			return {
+				...state,
+				error: ''
+			};
+		case FORM_ADD_FRIEND:
+			return {
+				...state,
+				friends: action.payload
 			};
 		default:
 			return state;

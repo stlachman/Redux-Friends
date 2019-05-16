@@ -29,5 +29,16 @@ export const fetchFriends = () => (dispatch) => {
 	axiosWithAuth()
 		.get(`http://localhost:5000/api/friends`)
 		.then((res) => dispatch({ type: FETCH_SUCCESSFUL, payload: res.data }))
+		.catch((err) => dispatch({ type: FETCH_FAILURE, payload: err }));
+};
+
+export const FORM_INIT_FRIEND = 'FORM_INIT_FRIEND';
+export const FORM_ADD_FRIEND = 'FORM_ADD_FRIEND';
+
+export const addFriend = (friend) => (dispatch) => {
+	dispatch({ type: FORM_INIT_FRIEND });
+	return axiosWithAuth()
+		.post(`http://localhost:5000/api/friends`, friend)
+		.then((res) => dispatch({ type: FORM_ADD_FRIEND, payload: res.data }))
 		.catch((err) => console.log(err));
 };
