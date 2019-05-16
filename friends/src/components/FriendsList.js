@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { fetchFriends, addFriend } from '../actions';
+import Friend from './Friend';
 
 class FriendsList extends React.Component {
 	constructor() {
@@ -22,14 +23,18 @@ class FriendsList extends React.Component {
 	}
 
 	handleChange = (event) => {
+		event.persist();
 		let value = event.target.value;
+		if (event.target.name === 'age') {
+			value = parseInt(value, 10);
+		}
 
-		this.setState({
+		this.setState((prevState) => ({
 			newFriend: {
-				...this.state.newFriend,
+				...prevState.newFriend,
 				[event.target.name]: event.target.value
 			}
-		});
+		}));
 
 		this.setState({ [event.target.name]: value });
 	};
@@ -54,7 +59,7 @@ class FriendsList extends React.Component {
 		return (
 			<div>
 				<h1>Friends List</h1>
-				{this.props.friends.map((friend) => <div key={friend.id}>{friend.name}</div>)}
+				{this.props.friends.map((friend) => <Friend friend={friend} key={friend.id} />)}
 
 				<h2>Add a Friend</h2>
 				<form onSubmit={this.handleSubmit}>
@@ -69,7 +74,7 @@ class FriendsList extends React.Component {
 						onChange={this.handleChange}
 						placeholder="Age"
 						value={this.state.newFriend.age}
-						type="text"
+						type="number"
 						name="age"
 					/>
 					<input
