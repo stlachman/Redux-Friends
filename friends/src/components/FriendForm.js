@@ -5,6 +5,12 @@ import styled from 'styled-components';
 
 import { addFriend } from '../actions';
 
+const Container = styled.div`
+	margin: 0 auto;
+	max-width: 1200px;
+	text-align: center;
+`;
+
 class FriendForm extends React.Component {
 	constructor() {
 		super();
@@ -49,7 +55,7 @@ class FriendForm extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<Container>
 				<h2>Add a Friend</h2>
 				<form onSubmit={this.handleSubmit}>
 					<input
@@ -75,7 +81,7 @@ class FriendForm extends React.Component {
 					/>
 					<button>Add Friend</button>
 				</form>
-			</div>
+			</Container>
 		);
 	}
 }
