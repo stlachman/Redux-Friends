@@ -1,4 +1,11 @@
-import { LOGIN_INITIALIZE, LOGIN_SUCCESSFUL, LOGIN_FAILURE } from '../actions';
+import {
+	LOGIN_INITIALIZE,
+	LOGIN_SUCCESSFUL,
+	LOGIN_FAILURE,
+	FETCH_DATA_INIT,
+	FETCH_SUCCESSFUL,
+	FETCH_FAILURE
+} from '../actions';
 
 const inititalState = {
 	friends: [],
@@ -7,7 +14,7 @@ const inititalState = {
 	error: ''
 };
 
-export const reducer = (state = inititalState, action) => {
+const reducer = (state = inititalState, action) => {
 	switch (action.type) {
 		case LOGIN_INITIALIZE:
 			return {
@@ -25,7 +32,22 @@ export const reducer = (state = inititalState, action) => {
 				...state,
 				isLoggingIn: false
 			};
+		case FETCH_DATA_INIT:
+			return {
+				...state,
+				fetchingData: true,
+				error: ''
+			};
+		case FETCH_SUCCESSFUL:
+			return {
+				...state,
+				fetchingData: false,
+				friends: action.payload,
+				error: ''
+			};
 		default:
 			return state;
 	}
 };
+
+export default reducer;

@@ -44,7 +44,7 @@ class Login extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		this.props.login(this.state.credentials).then(() => {
-			this.props.history.push('/');
+			this.props.history.push('/friends-list');
 		});
 	};
 
