@@ -14,6 +14,9 @@ const Navigation = () => {
 				<li>
 					<NavLink to="/friends-list">Friends</NavLink>
 				</li>
+				<li>
+					<NavLink to="/add-friend">Add Friend</NavLink>
+				</li>
 			</ul>
 		</nav>
 	);
