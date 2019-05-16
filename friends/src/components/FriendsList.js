@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { fetchFriends, addFriend } from '../actions';
+import { fetchFriends } from '../actions';
 import Friend from './Friend';
 
 const Container = styled.div`
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { fetchFriends, addFriend })(FriendsList));
+export default withRouter(connect(mapStateToProps, { fetchFriends })(FriendsList));

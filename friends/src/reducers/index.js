@@ -6,7 +6,9 @@ import {
 	FETCH_SUCCESSFUL,
 	FETCH_FAILURE,
 	FORM_INIT_FRIEND,
-	FORM_ADD_FRIEND
+	FORM_ADD_FRIEND,
+	DELETE_FRIEND_INIT,
+	DELETE_FRIEND_SUCCESS
 } from '../actions';
 
 const inititalState = {
@@ -59,6 +61,16 @@ const reducer = (state = inititalState, action) => {
 				error: ''
 			};
 		case FORM_ADD_FRIEND:
+			return {
+				...state,
+				friends: action.payload
+			};
+		case DELETE_FRIEND_INIT:
+			return {
+				...state,
+				error: ''
+			};
+		case DELETE_FRIEND_SUCCESS:
 			return {
 				...state,
 				friends: action.payload

@@ -42,3 +42,14 @@ export const addFriend = (friend) => (dispatch) => {
 		.then((res) => dispatch({ type: FORM_ADD_FRIEND, payload: res.data }))
 		.catch((err) => console.log(err));
 };
+
+export const DELETE_FRIEND_INIT = 'DELETE_FRIEND_INIT';
+export const DELETE_FRIEND_SUCCESS = 'DELETE_FRIEND_SUCCESS';
+
+export const deleteFriend = (id) => (dispatch) => {
+	dispatch({ type: DELETE_FRIEND_INIT });
+	return axiosWithAuth()
+		.delete(`http://localhost:5000/api/friends/${id}`)
+		.then((res) => dispatch({ type: DELETE_FRIEND_SUCCESS, payload: res.data }))
+		.catch((err) => console.log(err));
+};
