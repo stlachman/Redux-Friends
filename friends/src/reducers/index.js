@@ -15,6 +15,8 @@ const inititalState = {
 	friends: [],
 	isLoggingIn: false,
 	fetchingData: false,
+	postingFriend: false,
+	deletingFriend: false,
 	error: ''
 };
 
@@ -58,22 +60,26 @@ const reducer = (state = inititalState, action) => {
 		case FORM_INIT_FRIEND:
 			return {
 				...state,
-				error: ''
+				error: '',
+				postingFriend: true
 			};
 		case FORM_ADD_FRIEND:
 			return {
 				...state,
-				friends: action.payload
+				friends: action.payload,
+				postingFriend: false
 			};
 		case DELETE_FRIEND_INIT:
 			return {
 				...state,
-				error: ''
+				error: '',
+				deletingFriend: true
 			};
 		case DELETE_FRIEND_SUCCESS:
 			return {
 				...state,
-				friends: action.payload
+				friends: action.payload,
+				deletingFriend: false
 			};
 		default:
 			return state;

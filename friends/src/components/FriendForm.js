@@ -82,7 +82,8 @@ class FriendForm extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		friends: state.friends
+		friends: state.friends,
+		postingFriend: state.postingFriend
 	};
 };
 

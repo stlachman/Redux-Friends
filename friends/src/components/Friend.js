@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { deleteFriend } from '../actions';
 
 const Friend = (props) => {
-	console.log(props.friend.id);
 	return (
 		<div>
 			<p>Name: {props.friend.name}</p>

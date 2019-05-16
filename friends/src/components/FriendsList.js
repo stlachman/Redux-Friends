@@ -40,7 +40,8 @@ const mapStateToProps = (state) => {
 	return {
 		friends: state.friends,
 		fetchingData: state.fetchingData,
-		error: state.error
+		error: state.error,
+		deletingFriend: state.deletingFriend
 	};
 };
 
