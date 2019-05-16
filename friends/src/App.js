@@ -12,13 +12,11 @@ import './App.css';
 function App() {
 	return (
 		<Router>
-			<div>
-				<Navigation />
-				<Route exact path="/" component={Home} />
-				<Route path="/login" component={Login} />
-				<PrivateRoute exact path="/friends-list" component={FriendsList} />
-				<PrivateRoute exact path="/add-friend" component={FriendForm} />
-			</div>
+			<Navigation />
+			<Route exact path="/" component={Home} />
+			<Route path="/login" component={Login} />
+			<PrivateRoute exact path="/friends-list" component={FriendsList} />
+			<PrivateRoute exact path="/add-friend" component={FriendForm} />
 		</Router>
 	);
 }
